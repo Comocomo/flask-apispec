@@ -38,12 +38,18 @@ class FlaskApiSpec(object):
     :param APISpec spec: apispec specification associated with API documentation
     """
 
-    def __init__(self, app=None):
+    def __init__(self, app=None,
+                 static_folder='./static',
+                 template_folder='./templates',
+                 static_url_path='/flask-apispec/static'):
         self._deferred = []
         self.app = app
         self.view_converter = None
         self.resource_converter = None
         self.spec = None
+        self.static_folder = static_folder
+        self.template_folder = template_folder
+        self.static_url_path = static_url_path
 
         if app:
             self.init_app(app)
@@ -71,9 +77,9 @@ class FlaskApiSpec(object):
         blueprint = flask.Blueprint(
             'flask-apispec',
             __name__,
-            static_folder='./static',
-            template_folder='./templates',
-            static_url_path='/flask-apispec/static',
+            static_folder=self.static_folder,
+            template_folder=self.template_folder,
+            static_url_path=self.static_url_path,
         )
 
         json_url = self.app.config.get('APISPEC_SWAGGER_URL', '/swagger/')
