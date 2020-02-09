@@ -111,9 +111,10 @@ class FlaskApiSpec(object):
                 pass
 
     def register(self, target, endpoint=None, blueprint=None,
-                 resource_class_args=None, resource_class_kwargs=None):
+                 resource_class_args=None, resource_class_kwargs=None, custom_path=None):
         """Register a view.
 
+        :param custom_path: (optional) Override the path property for the endpoint
         :param target: view function or view class.
         :param endpoint: (optional) endpoint name.
         :param blueprint: (optional) blueprint name.
@@ -124,7 +125,7 @@ class FlaskApiSpec(object):
         """
 
         self._defer(self._register, target, endpoint, blueprint,
-                    resource_class_args, resource_class_kwargs)
+                    resource_class_args, resource_class_kwargs, custom_path)
 
     def _register(self, target, endpoint=None, blueprint=None,
                   resource_class_args=None, resource_class_kwargs=None, custom_path=None):
