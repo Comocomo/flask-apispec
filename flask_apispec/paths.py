@@ -7,8 +7,10 @@ import werkzeug.routing
 PATH_RE = re.compile(r'<(?:[^:<>]+:)?([^<>]+)>')
 
 def rule_to_path(rule):
-    return PATH_RE.sub(r'{\1}', rule.rule)
+    return rule_path_to_path(rule.rule)
 
+def rule_path_to_path(rule_path):
+    return PATH_RE.sub(r'{\1}', rule_path)
 
 CONVERTER_MAPPING = {
     werkzeug.routing.UnicodeConverter: ('string', None),

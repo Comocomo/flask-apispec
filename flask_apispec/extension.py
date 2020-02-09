@@ -7,6 +7,7 @@ from apispec.ext.marshmallow import MarshmallowPlugin
 
 from flask_apispec import ResourceMeta
 from flask_apispec.apidoc import ViewConverter, ResourceConverter
+from flask_apispec.paths import rule_path_to_path
 
 
 class FlaskApiSpec(object):
@@ -154,7 +155,7 @@ class FlaskApiSpec(object):
 
         if custom_path and len(paths) == 1:
             path = paths[0]
-            path['path'] = custom_path
+            path['path'] = rule_path_to_path(custom_path)
             self.spec.path(**path)
         else:
             for path in paths:
