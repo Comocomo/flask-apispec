@@ -154,7 +154,7 @@ class FlaskApiSpec(object):
 
         if custom_path and len(paths) == 1:
             path = paths[0]
-            path.path = custom_path
+            path['path'] = custom_path
             self.spec.path(**path)
         else:
             for path in paths:
