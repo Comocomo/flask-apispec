@@ -127,7 +127,7 @@ class FlaskApiSpec(object):
                     resource_class_args, resource_class_kwargs)
 
     def _register(self, target, endpoint=None, blueprint=None,
-                  resource_class_args=None, resource_class_kwargs=None):
+                  resource_class_args=None, resource_class_kwargs=None, custom_path=None):
         """Register a view.
 
         :param target: view function or view class.
@@ -150,8 +150,15 @@ class FlaskApiSpec(object):
             )
         else:
             raise TypeError()
-        for path in paths:
+
+        if custom_path and len(paths) == 1:
+            path = paths[0]
+            path.path = custom_path
             self.spec.path(**path)
+        else:
+            for path in paths:
+                self.spec.path(**path)
+
 
 
 def make_apispec(title='flask-apispec', version='v1', openapi_version='2.0'):
