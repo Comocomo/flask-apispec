@@ -160,7 +160,6 @@ class FlaskApiSpec(object):
                 self.spec.path(**path)
 
 
-
 def make_apispec(title='flask-apispec', version='v1', openapi_version='2.0'):
     return APISpec(
         title=title,
