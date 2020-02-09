@@ -12,6 +12,7 @@ def rule_to_path(rule):
 def rule_path_to_path(rule_path):
     return PATH_RE.sub(r'{\1}', rule_path)
 
+
 CONVERTER_MAPPING = {
     werkzeug.routing.UnicodeConverter: ('string', None),
     werkzeug.routing.IntegerConverter: ('integer', 'int32'),
